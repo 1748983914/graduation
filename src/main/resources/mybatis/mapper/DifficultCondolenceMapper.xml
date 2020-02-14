@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liwei.graduation.mapper.DifficultCondolenceMapper" >
+  <resultMap id="BaseResultMap" type="com.liwei.graduation.pojo.DifficultCondolence" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="leaderid" property="leaderid" jdbcType="VARCHAR" />
+    <result column="leadername" property="leadername" jdbcType="VARCHAR" />
+    <result column="coodepart" property="coodepart" jdbcType="VARCHAR" />
+    <result column="contacttel" property="contacttel" jdbcType="VARCHAR" />
+    <result column="consolationdate" property="consolationdate" jdbcType="TIMESTAMP" />
+    <result column="difficultpartyid" property="difficultpartyid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, leaderid, leadername, coodepart, contacttel, consolationdate, difficultpartyid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.liwei.graduation.pojo.DifficultCondolenceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from difficult_condolence
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from difficult_condolence
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from difficult_condolence
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.liwei.graduation.pojo.DifficultCondolenceExample" >
+    delete from difficult_condolence
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liwei.graduation.pojo.DifficultCondolence" >
+    insert into difficult_condolence (id, leaderid, leadername, 
+      coodepart, contacttel, consolationdate, 
+      difficultpartyid)
+    values (#{id,jdbcType=INTEGER}, #{leaderid,jdbcType=VARCHAR}, #{leadername,jdbcType=VARCHAR}, 
+      #{coodepart,jdbcType=VARCHAR}, #{contacttel,jdbcType=VARCHAR}, #{consolationdate,jdbcType=TIMESTAMP}, 
+      #{difficultpartyid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liwei.graduation.pojo.DifficultCondolence" >
+    insert into difficult_condolence
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="leaderid != null" >
+        leaderid,
+      </if>
+      <if test="leadername != null" >
+        leadername,
+      </if>
+      <if test="coodepart != null" >
+        coodepart,
+      </if>
+      <if test="contacttel != null" >
+        contacttel,
+      </if>
+      <if test="consolationdate != null" >
+        consolationdate,
+      </if>
+      <if test="difficultpartyid != null" >
+        difficultpartyid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="leaderid != null" >
+        #{leaderid,jdbcType=VARCHAR},
+      </if>
+      <if test="leadername != null" >
+        #{leadername,jdbcType=VARCHAR},
+      </if>
+      <if test="coodepart != null" >
+        #{coodepart,jdbcType=VARCHAR},
+      </if>
+      <if test="contacttel != null" >
+        #{contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="consolationdate != null" >
+        #{consolationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="difficultpartyid != null" >
+        #{difficultpartyid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.liwei.graduation.pojo.DifficultCondolenceExample" resultType="java.lang.Integer" >
+    select count(*) from difficult_condolence
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update difficult_condolence
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.leaderid != null" >
+        leaderid = #{record.leaderid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leadername != null" >
+        leadername = #{record.leadername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coodepart != null" >
+        coodepart = #{record.coodepart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contacttel != null" >
+        contacttel = #{record.contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consolationdate != null" >
+        consolationdate = #{record.consolationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.difficultpartyid != null" >
+        difficultpartyid = #{record.difficultpartyid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update difficult_condolence
+    set id = #{record.id,jdbcType=INTEGER},
+      leaderid = #{record.leaderid,jdbcType=VARCHAR},
+      leadername = #{record.leadername,jdbcType=VARCHAR},
+      coodepart = #{record.coodepart,jdbcType=VARCHAR},
+      contacttel = #{record.contacttel,jdbcType=VARCHAR},
+      consolationdate = #{record.consolationdate,jdbcType=TIMESTAMP},
+      difficultpartyid = #{record.difficultpartyid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liwei.graduation.pojo.DifficultCondolence" >
+    update difficult_condolence
+    <set >
+      <if test="leaderid != null" >
+        leaderid = #{leaderid,jdbcType=VARCHAR},
+      </if>
+      <if test="leadername != null" >
+        leadername = #{leadername,jdbcType=VARCHAR},
+      </if>
+      <if test="coodepart != null" >
+        coodepart = #{coodepart,jdbcType=VARCHAR},
+      </if>
+      <if test="contacttel != null" >
+        contacttel = #{contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="consolationdate != null" >
+        consolationdate = #{consolationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="difficultpartyid != null" >
+        difficultpartyid = #{difficultpartyid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liwei.graduation.pojo.DifficultCondolence" >
+    update difficult_condolence
+    set leaderid = #{leaderid,jdbcType=VARCHAR},
+      leadername = #{leadername,jdbcType=VARCHAR},
+      coodepart = #{coodepart,jdbcType=VARCHAR},
+      contacttel = #{contacttel,jdbcType=VARCHAR},
+      consolationdate = #{consolationdate,jdbcType=TIMESTAMP},
+      difficultpartyid = #{difficultpartyid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
